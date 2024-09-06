@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- link to css file -->
+    <link href="/css/home.css" rel="stylesheet">
+
+    <title>Home</title>
+</head>
+
+<body>
+    <!-- nav -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">BloggingApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="d-flex ms-auto">
+                    <button class="btn btn-warning profile-button" type="button">Profile</button>
+                    <button class="btn btn-danger logout-button" type="button">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- main section -->
+    <div class="container main-section">
+        <div class="row">
+            <!-- welcome section -->
+            <div class="welcome-section">
+                <h2 class="welcome-heading"></h2>
+                <p>We're excited to have you here! This is your space to create, edit, and manage your blog posts
+                    effortlessly.</p>
+                <p>Ready to share your thoughts with the world? Click below to start writing your next blog post!</p>
+                <button class="btn btn-success create-blog-button" type="button">Create a blog</button>
+            </div>
+        </div>
+        <div class="row">
+            <!-- my blogs section -->
+            <div class="my-blog-section">
+                <h3>My Blogs</h3>
+            </div>
+            <!-- popular blogs section -->
+            <div class="popular-blog-section">
+                <h3>Popular Blogs</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="fixed-bottom" style="position: relative;">
+        <div class="container">
+            <p class="text-center">© 2024 BloggingApp | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- link to js file -->
+    <script src="/js/shared.js"></script>
+    <script src="/js/home.js"></script>
+</body>
+
+</html>
