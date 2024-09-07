@@ -1,3 +1,8 @@
+// initialize quill editor
+const quill = new Quill("#editor", {
+    theme: "snow",
+});
+
 // view popular blog
 const params = new URLSearchParams(window.location.search);
 const blogId = params.get('blogId');
@@ -17,7 +22,8 @@ async function viewPopularBlog(blogId) {
             document.querySelector('.popular-blog-title').textContent = blog.title;
             document.querySelector('.author-name').textContent = `Author: ${blog.User.name}`;
             document.querySelector('.popular-blog-published-at').textContent = `Published: ${new Date(blog.publishedAt).toISOString().split('T')[0]}`;
-            document.querySelector('.popular-blog-content').textContent = blog.content;
+            // document.querySelector('.popular-blog-content').textContent = blog.content;
+            quill.root.innerHTML = blog.content; // set blog content into quill editor
         } else {
             console.log('failed to load blog');
         }
