@@ -13,6 +13,9 @@
     <!-- link to css file -->
     <link href="/css/viewMyBlog.css" rel="stylesheet">
 
+    <!-- quill -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet" />
+
     <title>View My Blog</title>
 </head>
 
@@ -59,7 +62,9 @@
                 </div>
                 <div class="form-group">
                     <label for="edit-blog-content">Edit Content:</label>
-                    <textarea class="form-control" id="edit-blog-content" rows="10"></textarea>
+                    <!-- <textarea class="form-control" id="edit-blog-content" rows="10"></textarea> -->
+                    <!-- quill -->
+                    <div id="editor" style="height: 300px;"></div>
                 </div>
             </div>
         </div>
@@ -79,6 +84,9 @@
 
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- quill -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
 
     <!-- link to js file -->
     <script src="/js/shared.js"></script>

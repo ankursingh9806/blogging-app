@@ -1,3 +1,8 @@
+// initialize Quill editor
+const quill = new Quill("#editor", {
+    theme: "snow",
+});
+
 // create blog
 document.querySelector('.publish-blog-button').addEventListener('click', publishBlog);
 document.querySelector('.discard-blog-button').addEventListener('click', discardBlog);
@@ -11,7 +16,8 @@ async function publishBlog() {
         document.querySelector('.error-message').textContent = '';
         const newBlogData = {
             title: document.querySelector('.blog-title').value,
-            content: document.querySelector('.blog-content').value,
+            // content: document.querySelector('.blog-content').value,
+            content: quill.root.innerHTML,  // use quill content
             publishedAt: new Date()
         };
         if (!newBlogData.title) {

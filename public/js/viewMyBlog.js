@@ -1,3 +1,8 @@
+// initialize quill editor
+const quill = new Quill("#editor", {
+    theme: "snow",
+});
+
 // view my blog
 const params = new URLSearchParams(window.location.search);
 const blogId = params.get('blogId');
@@ -17,7 +22,8 @@ async function viewMyBlog(blogId) {
             document.querySelector('.my-blog-title').textContent = blog.title;
             document.querySelector('.author-name').textContent = `Author: ${blog.User.name}`;
             document.querySelector('.my-blog-published-at').textContent = `Published: ${new Date(blog.publishedAt).toISOString().split('T')[0]}`;
-            document.querySelector('.my-blog-content').textContent = blog.content;
+            // document.querySelector('.my-blog-content').textContent = blog.content;
+            document.querySelector('.my-blog-content').innerHTML = blog.content; // use quill content
         } else {
             console.log('failed to load blog');
         }
@@ -42,7 +48,8 @@ document.querySelector('.edit-blog-button').addEventListener('click', function (
     document.querySelector('.buttons').style.display = 'none';
 
     document.getElementById('edit-blog-title').value = document.querySelector('.my-blog-title').textContent;
-    document.getElementById('edit-blog-content').value = document.querySelector('.my-blog-content').textContent;
+    // document.getElementById('edit-blog-content').value = document.querySelector('.my-blog-content').textContent;
+    quill.root.innerHTML = document.querySelector('.my-blog-content').innerHTML;  // set content of quill editor
 
     document.querySelector('.cancel-edit-button').addEventListener('click', function () {
         document.querySelector('.edit-blog-form').style.display = 'none';
@@ -76,7 +83,8 @@ async function updateMyBlog(blogId) {
     try {
         const updatedBlogData = {
             title: document.getElementById('edit-blog-title').value,
-            content: document.getElementById('edit-blog-content').value,
+            // content: document.getElementById('edit-blog-content').value,
+            content: quill.root.innerHTML, // get content from quill
         };
         const token = localStorage.getItem('token');
         const res = await axios.put(`http://localhost:3000/blog/update-my-blog/${blogId}`, updatedBlogData, {
