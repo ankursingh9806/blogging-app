@@ -49,6 +49,10 @@ app.use('/home', homeRoute);
 app.use('/profile', profileRoute);
 app.use('/blog', blogRoute);
 
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "public", "html", "welcome.html"));
+});
+
 User.hasMany(ResetPassword, { foreignKey: 'userId' });
 ResetPassword.belongsTo(User, { foreignKey: 'userId' });
 
