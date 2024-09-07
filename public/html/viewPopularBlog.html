@@ -13,6 +13,9 @@
     <!-- link to css file -->
     <link href="/css/viewPopularBlog.css" rel="stylesheet">
 
+    <!-- quill -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet" />
+
     <title>View Popular Blog</title>
 </head>
 
@@ -45,7 +48,9 @@
             <div class="form-group">
                 <button class="btn btn-secondary btn-sm go-back-button" type="button">Go Back</button>
             </div>
-            <p class="popular-blog-content"></p>
+            <!-- <p class="popular-blog-content"></p> -->
+            <!-- quill -->
+            <div id="editor" style="height: 300px;"></div>
         </div>
     </div>
 
@@ -63,6 +68,9 @@
 
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- quill -->
+    <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
 
     <!-- link to js file -->
     <script src="/js/shared.js"></script>
