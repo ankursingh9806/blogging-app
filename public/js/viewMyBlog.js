@@ -25,10 +25,14 @@ async function viewMyBlog(blogId) {
             // document.querySelector('.my-blog-content').textContent = blog.content;
             document.querySelector('.my-blog-content').innerHTML = blog.content; // use quill content
         } else {
-            console.log('failed to load blog');
+            console.log('failed to load my blog');
         }
     } catch (err) {
-        console.error('error loading blog:', err);
+        if (err.response && err.response.status === 404) {
+            console.error('my blog not found:', err);
+        } else {
+            console.error('error in viewing my blog:', err);;
+        }
     }
 }
 
@@ -72,10 +76,14 @@ async function deleteMyBlog(blogId) {
         if (res.status === 200) {
             window.location.href = '../html/home.html';
         } else {
-            console.log('failed to delete blog');
+            console.log('failed to delete my blog');
         }
     } catch (err) {
-        console.error('error deleting blog:', err);
+        if (err.response && err.response.status === 404) {
+            console.error('my blog not found:', err);
+        } else {
+            console.error('error in deleting my blog:', err);;
+        }
     }
 }
 
@@ -93,9 +101,13 @@ async function updateMyBlog(blogId) {
         if (res.status === 200) {
             window.location.href = '../html/home.html';
         } else {
-            console.log('failed to update blog');
+            console.log('failed to update my blog');
         }
     } catch (err) {
-        console.error('error updating blog:', err);
+        if (err.response && err.response.status === 404) {
+            console.error('my blog not found:', err);
+        } else {
+            console.error('error in updating my blog:', err);;
+        }
     }
 }
