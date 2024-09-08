@@ -12,13 +12,13 @@ document.querySelector('.logout-button').addEventListener('click', logout);
 async function logout() {
     try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:3000/user/logout', {
+        const res = await axios.post('http://localhost:3000/user/logout', {}, {
             headers: {
                 Authorization: token
             }
         });
         if (res.status === 200) {
-            localStorage.clear();
+            localStorage.removeItem('token');
             window.location.href = '../html/login.html';
         } else {
             console.error('failed to logout');
