@@ -28,7 +28,7 @@ const viewMyBlog = async (req, res, next) => {
         if (!blog) {
             return res.status(404).json({ message: 'blog not found' });
         }
-        res.status(200).json({ blog });
+        res.status(200).json({ blog, message: 'my blog viewed' });
     } catch (err) {
         console.error('error:', err);
         res.status(500).json({ error: 'internal server error' });
@@ -39,14 +39,14 @@ const deleteMyBlog = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
         const { blogId } = req.params;
-        const result = await Blog.destroy({ where: { id: blogId, userId: req.user.id } });
-        if (result) {
-            await t.commit();
-            res.status(200).json({ message: 'blog deleted' });
-        } else {
+        const blog = await Blog.findOne({ where: { id: blogId, userId: req.user.id }, transaction: t });
+        if (!blog) {
             await t.rollback();
-            res.status(404).json({ message: 'blog not found' });
+            return res.status(404).json({ message: 'blog not found' });
         }
+        await blog.destroy();
+        await t.commit();
+        res.status(200).json({ message: 'blog deleted' });
     } catch (err) {
         await t.rollback();
         console.error('error:', err);
@@ -58,17 +58,14 @@ const updateMyBlog = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
         const { blogId } = req.params;
-        const { title, content, updatedAt } = req.body;
-        const blogData = await Blog.findOne({ where: { id: blogId, userId: req.user.id } });
+        const { title, content } = req.body;
+        const blogData = await Blog.findOne({ where: { id: blogId, userId: req.user.id }, transaction: t });
         if (!blogData) {
+            await t.rollback();
             return res.status(404).json({ message: 'blog not found' });
         }
-        const updatedBlogData = {
-            title,
-            content,
-            updatedAt
-        };
-        await Blog.update(updatedBlogData, { where: { id: blogId, userId: req.user.id } });
+        const updatedBlogData = { title, content };
+        await Blog.update(updatedBlogData, { where: { id: blogId, userId: req.user.id }, transaction: t });
         await t.commit();
         res.status(200).json({ message: 'blog updated' });
     } catch (err) {
@@ -88,7 +85,7 @@ const viewPopularBlog = async (req, res, next) => {
         if (!blog) {
             return res.status(404).json({ message: 'blog not found' });
         }
-        res.status(200).json({ blog });
+        res.status(200).json({ blog, message: 'popular blog viewed' });
     } catch (err) {
         console.error('error:', err);
         res.status(500).json({ error: 'internal server error' });
