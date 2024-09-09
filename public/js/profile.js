@@ -73,6 +73,6 @@ async function profileDelete() {
             document.querySelector('.error-message').textContent = 'Failed to delete account.';
         }
     } catch (err) {
-        document.querySelector('.error-message').textContent = 'Error deleting account.';
+        document.querySelector('.error-message').textContent = 'Error in deleting account.';
     }
 }

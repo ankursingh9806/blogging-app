@@ -38,6 +38,6 @@ async function publishBlog() {
             console.log('failed to publish blog');
         }
     } catch (err) {
-        console.error('error publishing blog:', err);
+        console.error('error in publishing blog:', err);
     }
 }

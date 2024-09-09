@@ -1,6 +1,7 @@
 // initialize quill editor
 const quill = new Quill("#editor", {
     theme: "snow",
+    readOnly: true,
 });
 
 // view popular blog
@@ -25,10 +26,14 @@ async function viewPopularBlog(blogId) {
             // document.querySelector('.popular-blog-content').textContent = blog.content;
             quill.root.innerHTML = blog.content; // set blog content into quill editor
         } else {
-            console.log('failed to load blog');
+            console.log('failed to load popular blog');
         }
     } catch (err) {
-        console.error('error loading blog:', err);
+        if (err.response && err.response.status === 404) {
+            console.error('my blog not found:', err);
+        } else {
+            console.error('error viewing popular blog:', err);;
+        }
     }
 }
 
