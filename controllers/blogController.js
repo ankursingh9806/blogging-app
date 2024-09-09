@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 const sequelize = require('../utils/database');
 
 const publishBlog = async (req, res, next) => {
+    const transaction = await sequelize.transaction();
     try {
         const { title, content, publishedAt } = req.body;
         const newBlog = await Blog.create({
@@ -10,9 +11,11 @@ const publishBlog = async (req, res, next) => {
             content: content,
             publishedAt: publishedAt,
             userId: req.user.id
-        });
+        }, { transaction });
+        await transaction.commit();
         res.status(201).json({ newBlog, message: 'blog published' });
     } catch (err) {
+        await transaction.rollback();
         console.error('error:', err);
         res.status(500).json({ error: 'internal server error' });
     }
