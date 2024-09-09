@@ -1,6 +1,7 @@
 // initialize quill editor
 const quill = new Quill("#editor", {
     theme: "snow",
+    readOnly: true,
 });
 
 // view popular blog
