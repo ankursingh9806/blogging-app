@@ -49,6 +49,7 @@ app.use('/home', homeRoute);
 app.use('/profile', profileRoute);
 app.use('/blog', blogRoute);
 
+// undefined route
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, "public", "html", "welcome.html"));
 });
