@@ -23,6 +23,7 @@ A full-featured blogging platform that allows users to create, edit, and publish
 - **Frontend**: HTML5, CSS3, JavaScript, Bootstrap, 
 - **Authentication**: JSON Web Token (JWT)
 - **Database**: MySQL with Sequelize ORM
+- **Cloud Services**: AWS (for deployment)
 - **Email Service**: Nodemailer
 - **Editor**: Quill Text Editor
 - **Other Tools**: Axios, Bcrypt, CORS, Dotenv, Helmet, Morgan, UUID 
