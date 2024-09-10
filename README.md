@@ -20,19 +20,12 @@ A full-featured blogging platform that allows users to create, edit, and publish
 ## Technology Stack
 
 - **Backend**: Node.js, Express
-- **Frontend**: HTML5, CSS3, JavaScript, Quill Text Editor
+- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap, 
 - **Authentication**: JSON Web Token (JWT)
 - **Database**: MySQL with Sequelize ORM
-- **Other Tools**: 
-  - **bcrypt**: For password hashing and security.
-  - **cors**: To handle Cross-Origin Resource Sharing.
-  - **dotenv**: For managing environment variables.
-  - **helmet**: For securing HTTP headers.
-  - **jsonwebtoken**: To manage token-based authentication.
-  - **morgan**: For HTTP request logging.
-  - **mysql2**: MySQL client for Node.js with Promise support.
-  - **nodemailer**: For sending emails (e.g., password reset links).
-  - **nodemon**: For automatically restarting the server during development when file changes are detected.
+- **Email Service**: Nodemailer
+- **Editor**: Quill Text Editor
+- **Other Tools**: Axios, Bcrypt, CORS, Dotenv, Helmet, Morgan, UUID 
 
 ## APIs Used
 
@@ -45,13 +38,13 @@ A full-featured blogging platform that allows users to create, edit, and publish
 - `GET /user/login-page` - Retrieves the login page.
 - `POST /user/signup` - Allows users to sign up by providing name, email, and password.
 - `POST /user/login` - Logs in users using their email and password.
-- `GET /user/logout` - Logs out the current user and invalidates the session.
+- `POST /user/logout` - Logs out the current user and invalidates the session.
 
 ### Password Endpoints
 
 - `GET /password/forgot-password-page` - Retrieves the forgot password page.
 - `POST /password/forgot-password` - Sends a password reset link to the user's registered email.
-- `GET /password/reset-password-page/:resetId` - Retrieves the reset password page using a unique reset token (UUID `resetId`).
+- `GET /password/reset-password-page/:resetId ` - Retrieves the reset password page using a unique reset token (UUID `resetId`).
 - `POST /password/reset-password/:resetId` - Resets the user's password using the reset token (UUID `resetId`).
 
 ### Home Endpoints
